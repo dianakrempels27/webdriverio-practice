@@ -30,11 +30,16 @@ export class TextformPage {
         await browser.url('https://demoqa.com/text-box');
     }
 
-    async fillTextForm() {
-        await this.fullNameInput.setValue('Jane Doe');
-        await this.emailInput.setValue('jane.doe@example.com');
-        await this.currentAddressInput.setValue('123 Main St');
-        await this.permanentAddressInput.setValue('456 Another St');
+    async fillTextForm(
+        fullName: string,
+        email: string,
+        currentAddress: string,
+        permanentAddress: string
+    ) {
+        await this.fullNameInput.setValue(fullName);
+        await this.emailInput.setValue(email);
+        await this.currentAddressInput.setValue(currentAddress);
+        await this.permanentAddressInput.setValue(permanentAddress);
 
         await this.submitButton.scrollIntoView();
         await this.submitButton.click();
