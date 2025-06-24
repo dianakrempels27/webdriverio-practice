@@ -50,8 +50,9 @@ export class WebFormPage {
     await this.age.setValue('28');
     await this.salary.setValue('50000');
     await this.department.setValue('QA');
-    
+
     await this.submitButton.scrollIntoView();
+    await this.submitButton.waitForClickable({ timeout: 5000 });
     await this.submitButton.click();
     }
 }
