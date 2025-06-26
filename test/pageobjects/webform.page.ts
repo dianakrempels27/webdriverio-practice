@@ -34,22 +34,33 @@ export class WebFormPage {
         return $('#submit');
     }
 
-    public get result(): ChainablePromiseElement {
-        return $('div.rt-td*=Anna');
+    public async getAllTableRows(): Promise<ChainablePromiseArray> {
+        return $$('.rt-tbody .rt-tr-group');
+    }
+
+    public async getEmailCells(): Promise<ChainablePromiseArray> {
+        return await $$('.rt-tr-group .rt-td:nth-child(4)');
     }
 
     async open() {
         await browser.url('https://demoqa.com/webtables');
     }
 
-    async addNewForm() {
+    async addNewForm(
+        firstName: string,
+        lastName: string,
+        userEmail: string,
+        userAge: string,
+        salary: string,
+        department: string
+    ) {
     await this.addButton.click();
-    await this.firstName.setValue('Anna');
-    await this.lastName.setValue('Smith');
-    await this.email.setValue('anna.smith@example.com');
-    await this.age.setValue('28');
-    await this.salary.setValue('50000');
-    await this.department.setValue('QA');
+    await this.firstName.setValue(firstName);
+    await this.lastName.setValue(lastName);
+    await this.email.setValue(userEmail);
+    await this.age.setValue(userAge);
+    await this.salary.setValue(salary);
+    await this.department.setValue(department);
 
     await this.submitButton.scrollIntoView();
     await this.submitButton.waitForClickable({ timeout: 5000 });

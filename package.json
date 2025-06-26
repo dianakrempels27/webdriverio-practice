@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
     "@wdio/cli": "^9.15.0",
     "@wdio/devtools-service": "^8.42.0",
     "@wdio/globals": "^9.15.0",
