@@ -47,4 +47,24 @@ describe('Webform page using POM', () => {
             console.log(`✅ Found ${nonEmptyEmails.length} valid emails.`);
         }
     });
+
+    it('should check that all salaries are numbers', async () => {
+        await webformPage.open();
+
+        const salaryCells = await webformPage.getSalaryCells();
+
+        const nonEmptySalaryCells = [];
+
+        for (const salary of salaryCells) {
+            const salaryText = (await salary.getText()).trim();
+
+            if (salaryText != '') {
+                const salaryNumber = Number(salaryText);
+                expect(salaryNumber).toBeGreaterThanOrEqual(0);
+                nonEmptySalaryCells.push(salaryNumber);
+            }
+
+            console.log(`✅ Found ${nonEmptySalaryCells.length} valid salaries.`)
+        }
+    })
 });

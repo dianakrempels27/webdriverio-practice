@@ -42,6 +42,10 @@ export class WebFormPage {
         return await $$('.rt-tr-group .rt-td:nth-child(4)');
     }
 
+    public async getSalaryCells(): Promise<ChainablePromiseArray> {
+        return await $$('.rt-tr-group .rt-td:nth-child(5)');
+    }
+
     async open() {
         await browser.url('https://demoqa.com/webtables');
     }
