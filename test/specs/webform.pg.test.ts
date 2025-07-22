@@ -3,7 +3,7 @@ import { expect } from '@wdio/globals';
 import { faker } from '@faker-js/faker';
 
 describe('Webform page using POM', () => {
-    it('should add new from in the table', async () => {
+    it('should add new form in the table', async () => {
         await webformPage.open();
 
         const firstName = faker.person.firstName();
@@ -67,4 +67,26 @@ describe('Webform page using POM', () => {
             console.log(`✅ Found ${nonEmptySalaryCells.length} valid salaries.`)
         }
     })
+
+    it('should successfully delete an user in the table', async () => {
+        await webformPage.open();
+
+        const firstName = faker.person.firstName();
+        const lastName = faker.person.lastName();
+        const email = faker.internet.email();
+        const age = faker.number.int({ min: 18, max: 60 }).toString();
+        const salary = faker.number.int({ min: 3000, max: 10000 }).toString();
+        const department = faker.commerce.department();
+
+        await webformPage.addNewForm(firstName, lastName, email, age, salary, department);
+
+        const newUser = await $(`.rt-td*=${email}`);
+        await newUser.waitForDisplayed({ timeout: 5000 });
+
+        const row = await newUser.parentElement();
+        const deleteButton = await row.$('span[title="Delete"]');
+        await deleteButton.click();
+
+        await expect(newUser).not.toBeExisting();
+    });
 });
