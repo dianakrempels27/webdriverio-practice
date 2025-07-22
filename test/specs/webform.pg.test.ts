@@ -89,4 +89,35 @@ describe('Webform page using POM', () => {
 
         await expect(newUser).not.toBeExisting();
     });
+
+    it('should successfully edit the users data', async() => {
+        await webformPage.open();
+
+        const firstName = faker.person.firstName();
+        const lastName = faker.person.lastName();
+        const age = faker.number.int({ min: 18, max: 60 }).toString();
+        const email = faker.internet.email();
+        const salary = faker.number.int({ min: 3000, max: 10000 }).toString();
+        const department = faker.commerce.department();
+
+        await webformPage.addNewForm(firstName, lastName, email, age, salary, department);
+
+        const newUser = await $(`.rt-td*=${email}`);
+        await newUser.waitForDisplayed({ timeout: 5000 });
+        
+        const parentRow = await newUser.parentElement();
+        const editButton = await parentRow.$('span[title=Edit]');
+        await editButton.click();
+
+        const updatedFirstName = faker.person.firstName();
+
+        const firstNameInput = await $('#firstName');
+        await firstNameInput.setValue(updatedFirstName);
+
+        const submitButton = await $('#submit')
+        await submitButton.click();
+
+        const editedUserName = await $(`.rt-td*=${updatedFirstName}`);
+        await editedUserName.waitForDisplayed({ timeout: 5000 });
+    });
 });
