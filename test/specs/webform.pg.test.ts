@@ -90,7 +90,7 @@ describe('Webform page using POM', () => {
         await expect(newUser).not.toBeExisting();
     });
 
-    it('should successfully edit the users data', async() => {
+    it('should successfully edit the users data', async () => {
         await webformPage.open();
 
         const firstName = faker.person.firstName();
