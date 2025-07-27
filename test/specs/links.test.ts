@@ -15,4 +15,13 @@ describe('Test links', () => {
 
         await expect(browser).toHaveUrl('https://demoqa.com/');
     })
+
+    it('should respond with staus 201 and text Created', async () => {
+        await linksPage.open();
+
+        await linksPage.clickCreatedLink();
+
+        const resultStatus = await $('#linkResponse');
+        await expect(resultStatus).toHaveText('Link has responded with staus 201 and status text Created');
+    })
 })

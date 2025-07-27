@@ -10,6 +10,14 @@ export class LinksPage {
         return $('#simpleLink');
     }
 
+    public get createdLink(): ChainablePromiseElement {
+        return $('#created');
+    }
+
+    async clickCreatedLink() {
+        await this.createdLink.click();
+    }
+
     async clickHomeLink() {
         await this.homeLink.click();
     }
