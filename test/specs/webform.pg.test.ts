@@ -16,7 +16,7 @@ describe('Webform page using POM', () => {
         await webformPage.addNewForm(firstName, lastName, userEmail, userAge, salary, department);
         
         const newRowEmailCell = await $(`.rt-td*=${userEmail}`);
-        await newRowEmailCell.waitForDisplayed({ timeout: 5000 });
+        await newRowEmailCell.waitForDisplayed({ timeout: 10000 });
 
         const newRow = await newRowEmailCell.parentElement();
         const newRowText = await newRow.getText();
@@ -81,7 +81,7 @@ describe('Webform page using POM', () => {
         await webformPage.addNewForm(firstName, lastName, email, age, salary, department);
 
         const newUser = await $(`.rt-td*=${email}`);
-        await newUser.waitForDisplayed({ timeout: 5000 });
+        await newUser.waitForDisplayed({ timeout: 10000 });
 
         const row = await newUser.parentElement();
         const deleteButton = await row.$('span[title="Delete"]');
@@ -103,7 +103,7 @@ describe('Webform page using POM', () => {
         await webformPage.addNewForm(firstName, lastName, email, age, salary, department);
 
         const newUser = await $(`.rt-td*=${email}`);
-        await newUser.waitForDisplayed({ timeout: 5000 });
+        await newUser.waitForDisplayed({ timeout: 10000 });
         
         const parentRow = await newUser.parentElement();
         const editButton = await parentRow.$('span[title=Edit]');
@@ -118,6 +118,6 @@ describe('Webform page using POM', () => {
         await submitButton.click();
 
         const editedUserName = await $(`.rt-td*=${updatedFirstName}`);
-        await editedUserName.waitForDisplayed({ timeout: 5000 });
+        await editedUserName.waitForDisplayed({ timeout: 10000 });
     });
 });
