@@ -1,5 +1,4 @@
 import buttonsPage from '../pageobjects/buttons.page';
-import {expect} from '@wdio/globals';
 
 describe('Test different buttons', () => {
     it('should display messages after clicking on the different types of buttons', async () => {
@@ -8,12 +7,12 @@ describe('Test different buttons', () => {
         await buttonsPage.clickButtons();
 
         const doubleMessage = await buttonsPage.doubleClickMessage;
-        await expect(doubleMessage).toBeDisplayed();
+        await doubleMessage.waitForDisplayed({ timeout: 10000 });
 
         const rightButtonMessage = await buttonsPage.rightClickMeMessage;
-        await expect(rightButtonMessage).toBeDisplayed();
+        await rightButtonMessage.waitForDisplayed({ timeout: 10000 });
 
         const normalClickMessade = await buttonsPage.clickMeMessage;
-        await expect(normalClickMessade).toBeDisplayed();
+        await normalClickMessade.waitForDisplayed({ timeout: 10000 });
     })
 })

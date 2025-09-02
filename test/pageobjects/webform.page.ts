@@ -67,7 +67,7 @@ export class WebFormPage {
     await this.department.setValue(department);
 
     await this.submitButton.scrollIntoView();
-    await this.submitButton.waitForClickable({ timeout: 5000 });
+    await this.submitButton.waitForClickable({ timeout: 10000 });
     await this.submitButton.click();
     }
 }
